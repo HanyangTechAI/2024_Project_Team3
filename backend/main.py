@@ -1,1 +1,2 @@
-# TODO Implement Server using Python Falsk Framework
+if __name__ == "__main__":
+    print("Starting Server...")
