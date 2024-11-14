@@ -1,38 +1,61 @@
-.App {
+/* Main container styling */
+.app-container {
   text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Button container styling */
+.button-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Button styling */
+.upload-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.upload-button:hover {
+  background-color: #45a049;
+}
+
+/* Image container styling */
+.image-container {
+  border: 2px dashed #ddd;
+  width: 80%;
+  height: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder text styling */
+.placeholder-text {
+  color: #888;
+  font-size: 18px;
+  padding: 20px;
+}
+
+/* Uploaded image styling */
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
