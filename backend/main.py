@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify, send_file
+from werkzeug.utils import secure_filename
 import os
+import uuid
+import magic
 
 # TODO 나중에 환경변수를 받아서 debug 여부를 읽어주기!
 DEBUG = True
@@ -10,6 +13,15 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+ALLOWED_EXTENSIONS = {'pdf','jpg','jpeg','png'}
+ALLOWED_MIME_TYPES = {'application/pdf', 'image/jpeg','image/png'}
+
+def is_allowed_file(file):
+    file_exit = file.filename.split('.')[-1].lower()
+    mime_type = magic.Magic(mime=True).from_buffer(file.read(1024))
+    file.seek(0)  # 파일 포인터를 초기화
+    return file_ext in ALLOWED_EXTENSIONS and mime_type in ALLOWED_MIME_TYPES
 
 @app.route('/upload_pdf', methods=['POST'])
 def upload_pdf():
@@ -22,6 +34,8 @@ def upload_pdf():
     if file.filename == '':
         return jsonify({'success': False, 'message':'No file name provided'}), 400
 
+    if not is_allowed_file(file):
+        return jsonify({'success' : False, 'message' : 'Invalid file type or MIME type'}),400
     # 파일명이 '.pdf'로 끝나는지 확인
     if file and file.filename.endswith('.pdf'):
         filename = file.filename
@@ -47,7 +61,8 @@ def retrieve_similar():
     # 파일명이 비어있는지 확인
     if file.filename == '':
         return jsonify({'success': False, 'message': 'No file provided'}), 400
-
+    if not is_allowed_file(file):
+        return jsonify({'success' : False, 'message' : 'Invalid file type or MIME type'}),400
     # 이미지 파일이 맞는지 확인 (예: JPG, PNG 등)
     if file and (file.filename.endswith('.jpg') or file.filename.endswith('.jpeg') or file.filename.endswith('.png')):
         filename = file.filename
@@ -56,7 +71,8 @@ def retrieve_similar():
 
         # 외부 함수에서 비슷한 문제 이미지를 검색
         result_image_path = find_similar_problem_image(file_path)
-
+        
+        
         # 이미지 전송
         if os.path.exists(result_image_path):
             return send_file(result_image_path, mimetype='image/png')
