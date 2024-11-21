@@ -1,42 +1,41 @@
 import React, { useState } from 'react';
-import './App.css';
+import Header from './module/Header';
+import FileUploader from './module/FileUploader';
+import StatusMessage from './module/StatusMessage';
+import './styles/styles.css';
 
 function App() {
-  const [imageSrc, setImageSrc] = useState(null);
+  const [imageUploaded, setImageUploaded] = useState(false);
+  const [pdfUploaded, setPdfUploaded] = useState(false);
 
-  const handleUpload = async (type) => {
-    const url = type === 'material' ? '/upload-material' : '/upload-pdf';
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setImageSrc(data.imageUrl);
-      } else {
-        console.error('Failed to upload');
-      }
-    } catch (error) {
-      console.error('Error:', error);
+  // 상태에 따른 메시지 설정
+  const getUploadMessage = () => {
+    if (!imageUploaded && !pdfUploaded) {
+      return "Please upload the image and textbook pdf";
+    } else if (imageUploaded && !pdfUploaded) {
+      return "Please upload the textbook pdf";
+    } else if (!imageUploaded && pdfUploaded) {
+      return "Please upload the image";
+    } else {
+      return "Both image and pdf are uploaded!";
     }
   };
 
   return (
-    <div className="app-container">
-      <div className="button-container">
-        <button className="upload-button" onClick={() => handleUpload('material')}>교재 업로드</button>
-        <button className="upload-button" onClick={() => handleUpload('pdf')}>수업자료 업로드</button>
-      </div>
-      <div className="image-container">
-        {imageSrc ? (
-          <img src={imageSrc} alt="Uploaded from server" className="uploaded-image" />
-        ) : (
-          <p className="placeholder-text">교재와 수업자료 pdf 를 업로드 해주세요</p>
-        )}
+    <div className="container">
+      <Header title="name" />
+      <StatusMessage message={getUploadMessage()} />
+      <div className="upload-container">
+        <FileUploader
+          fileType="image"
+          label="Upload Image"
+          onUpload={() => setImageUploaded(true)}
+        />
+        <FileUploader
+          fileType="pdf"
+          label="Upload PDF"
+          onUpload={() => setPdfUploaded(true)}
+        />
       </div>
     </div>
   );
