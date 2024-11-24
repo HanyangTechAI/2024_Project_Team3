@@ -2,41 +2,44 @@ import React, { useState } from 'react';
 import Header from './module/Header';
 import FileUploader from './module/FileUploader';
 import StatusMessage from './module/StatusMessage';
+import UploadedFiles from './module/UploadedFiles';
+import ApiRequestHandler from './module/ApiRequestHandler';
 import './styles/styles.css';
 
 function App() {
-  const [imageUploaded, setImageUploaded] = useState(false);
-  const [pdfUploaded, setPdfUploaded] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const maxUploads = 3;
 
-  // 상태에 따른 메시지 설정
-  const getUploadMessage = () => {
-    if (!imageUploaded && !pdfUploaded) {
-      return "Please upload the image and textbook pdf";
-    } else if (imageUploaded && !pdfUploaded) {
-      return "Please upload the textbook pdf";
-    } else if (!imageUploaded && pdfUploaded) {
-      return "Please upload the image";
-    } else {
-      return "Both image and pdf are uploaded!";
+  const handleFileUpload = (file) => {
+    if (uploadedFiles.length >= maxUploads) {
+      alert("You can only upload up to 3 files.");
+      return;
     }
+    setUploadedFiles((prev) => [...prev, file]);
+  };
+
+  const handleFileRemove = (fileName) => {
+    setUploadedFiles((prev) => prev.filter((file) => file.name !== fileName));
   };
 
   return (
     <div className="container">
-      <Header title="name" />
-      <StatusMessage message={getUploadMessage()} />
+      <Header title="Welcome" />
+      <StatusMessage message="Please upload the image and textbook PDF (Max: 3 files)" />
       <div className="upload-container">
-        <FileUploader
-          fileType="image"
-          label="Upload Image"
-          onUpload={() => setImageUploaded(true)}
-        />
         <FileUploader
           fileType="pdf"
           label="Upload PDF"
-          onUpload={() => setPdfUploaded(true)}
+          onUpload={handleFileUpload}
+        />
+        <FileUploader
+          fileType="image"
+          label="Upload Image"
+          onUpload={handleFileUpload}
         />
       </div>
+      <UploadedFiles files={uploadedFiles} onRemove={handleFileRemove} />
+      <ApiRequestHandler files={uploadedFiles} /> {/* API 요청 컴포넌트 추가 */}
     </div>
   );
 }

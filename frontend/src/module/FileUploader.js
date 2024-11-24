@@ -3,7 +3,8 @@ import React from 'react';
 function FileUploader({ fileType, label, onUpload }) {
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      onUpload();
+      const file = e.target.files[0];
+      onUpload(file);
     }
   };
 
@@ -13,8 +14,8 @@ function FileUploader({ fileType, label, onUpload }) {
         <img
           src={
             fileType === "image"
-              ? "https://cdn-icons-png.flaticon.com/512/2948/2948035.png"
-              : "https://cdn-icons-png.flaticon.com/512/3342/3342137.png"
+              ? "https://cdn-icons-png.flaticon.com/512/3342/3342137.png"
+              : "https://cdn-icons-png.flaticon.com/512/136/136440.png"
           }
           alt={label}
           className="file-icon"
