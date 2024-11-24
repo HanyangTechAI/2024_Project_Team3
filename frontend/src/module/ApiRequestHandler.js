@@ -15,7 +15,7 @@ function ApiRequestHandler({ files }) {
     });
 
     try {
-      const res = await fetch('https://example.com/api/upload', {
+      const res = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
