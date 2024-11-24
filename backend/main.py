@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify, send_file
+from pdf_utils import extract_image_from_pdf
+from gpt_utils import find_similar_problem
 import os
 
 # TODO 나중에 환경변수를 받아서 debug 여부를 읽어주기!
@@ -54,10 +56,10 @@ def retrieve_similar():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
 
-        # 외부 함수에서 비슷한 문제 이미지를 검색
-        result_image_path = find_similar_problem_image(file_path)
-
-        # 이미지 전송
+        # GPT를 통해 유사한 문제를 찾기
+        page_number, problem_number = find_similar_problem(file_path)
+        # PDF에서 찾은 문제를 다시 이미지로 추출
+        result_image_path = extract_image_from_pdf(file_path, page_number, problem_number,app.config['OUTPUT_FOLDER'])
         if os.path.exists(result_image_path):
             return send_file(result_image_path, mimetype='image/png')
 
@@ -67,9 +69,10 @@ def retrieve_similar():
 
 
 # TODO GPT 모델을 사용하여 비슷한 문제 이미지를 찾는 함수 구현
-def find_similar_problem_image():
+def find_similar_problem_image(file_path):
     # 저장해둔 PDF와 문제 이미지를 GPT에게 넘겨, 유사한 문제의 페이지와 번호 받기.
     # 페이지와 번호를 바탕으로 PDF에서 문제의 이미지를 추출하거나, 번호를 반환.
+    
     return 'result.png'
 
 if __name__ == '__main__':
