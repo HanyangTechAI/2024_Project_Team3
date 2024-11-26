@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from pdf_utils import extract_image_from_pdf
 from gpt_utils import find_similar_problem
@@ -52,11 +52,13 @@ def api_upload():
                 result_image_path = extract_image_from_pdf(file_path, page_number, problem_number, app.config['OUTPUT_FOLDER'])
 
                 if os.path.exists(result_image_path):
+                    # 절대 URL 생성
+                    result_image_url = f"http://localhost:5000/output/{os.path.basename(result_image_path)}"
                     results.append({
                         'file': filename,
                         'type': 'pdf',
                         'success': True,
-                        'result_image': result_image_path
+                        'result_image': result_image_url
                     })
                 else:
                     results.append({
@@ -90,6 +92,11 @@ def api_upload():
             })
 
     return jsonify(results)
+
+# 정적 파일 제공
+@app.route('/output/<path:filename>', methods=['GET'])
+def serve_output_file(filename):
+    return send_from_directory(app.config['OUTPUT_FOLDER'], filename)
 
 if __name__ == '__main__':
     app.run(debug=DEBUG)
