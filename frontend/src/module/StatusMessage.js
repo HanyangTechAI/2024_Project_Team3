@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function StatusMessage({ message = "" }) {
   const [displayedText, setDisplayedText] = useState(""); // 초기 상태 설정
-  const typingSpeed = 100; // 타이핑 속도 (밀리초)
+  const typingSpeed = 80; // 타이핑 속도 (밀리초)
 
   useEffect(() => {
     // message가 유효하지 않을 경우 초기화
@@ -17,7 +17,9 @@ function StatusMessage({ message = "" }) {
     // 타이핑 효과 구현
     const typingEffect = setInterval(() => {
       if (currentIndex < message.length) {
-        setDisplayedText((prev) => prev + (message[currentIndex] != null ? message[currentIndex] : "")); // 한 글자씩 추가
+        const nextChar = message[currentIndex];
+        if (nextChar === "(") setDisplayedText((prev) => prev + "\n" + nextChar); // 줄바꿈 후 괄호 추가
+        else setDisplayedText((prev) => prev + nextChar); // 그냥 문자 추가
         currentIndex++;
       } else {
         clearInterval(typingEffect); // 타이핑 완료 시 타이머 정리

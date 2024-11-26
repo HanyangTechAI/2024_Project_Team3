@@ -175,67 +175,17 @@ button.submit-btn:hover {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
-/* 모바일 화면에 맞춰 전체 컨테이너 크기 조정 */
 @media (max-width: 768px) {
-  .container {
-    padding: 10px; /* 여백 추가 */
-  }
-
-  .header h1 {
-    font-size: 2rem; /* 헤더 글씨 크기 축소 */
-  }
-
-  .status-message {
-    font-size: 1rem; /* 상태 메시지 글씨 크기 축소 */
-  }
-
-  .upload-container {
-    flex-direction: column; /* 가로 배열을 세로 배열로 변경 */
-    gap: 1rem; /* 간격 조정 */
-  }
-
-  .file-icon {
-    width: 40px; /* 아이콘 크기 축소 */
-    height: 40px;
-  }
-
-  .submit-btn {
-    font-size: 14px; /* 버튼 글씨 크기 축소 */
-    padding: 8px 16px; /* 버튼 크기 조정 */
-  }
-}
-
-/* 모바일 전용 반응형 스타일 */
-@media (max-width: 480px) {
-  .container {
-    padding: 5px; /* 더 작은 여백 */
-  }
-
-  .header h1 {
-    font-size: 1.8rem; /* 헤더 글씨 크기 더 축소 */
-  }
-
-  .upload-container {
-    gap: 0.5rem; /* 간격 줄이기 */
-  }
-
-  .file-icon {
-    width: 30px; /* 아이콘 크기 더 축소 */
-    height: 30px;
-  }
-
-  .submit-btn {
-    font-size: 12px; /* 버튼 글씨 크기 더 축소 */
-    padding: 6px 12px;
-  }
-
-  .result-card {
-    padding: 10px; /* 카드 안쪽 여백 줄이기 */
-    font-size: 12px; /* 카드 글씨 크기 축소 */
-  }
-
-  .result-image {
-    width: 250px; /* 이미지 크기 축소 */
-    height: 250px;
+  .typing-effect {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.7rem; /* 모바일 화면에서 글자 크기 조정 */
+    color: #003366;
+    white-space: pre-wrap; /* 줄바꿈 허용 */
+    overflow: hidden; /* 초과 텍스트 숨기기 */
+    word-wrap: break-word; /* 단어가 길면 자동으로 줄바꿈 */
+    word-break: break-word; /* 단어를 강제로 줄바꿈 */
+    max-width: 90%; /* 텍스트 너비를 화면의 90%로 제한 */
+    margin: 0 auto; /* 가운데 정렬 */
+    text-align: center; /* 텍스트 가운데 정렬 */
   }
 }

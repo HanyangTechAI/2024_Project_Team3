@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="container">
       <Header title="Welcome" />
-      <StatusMessage message="PPlease upload the image and textbook PDF (Max: 3 files) " />
+      <StatusMessage message="Please upload the image and textbook PDF (Max: 3 files) " />
       <div className="upload-container">
         <FileUploader
           fileType="pdf"
