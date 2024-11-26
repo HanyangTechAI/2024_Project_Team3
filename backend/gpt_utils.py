@@ -1,6 +1,6 @@
 import openai
 import os
-openai.api_key=os.getenv("API키여기다넣으셈/환경변수설정하고")
+openai.api_key=os.getenv("OPENAI_API_KEY")
 from pdf_utils import extract_text_from_pdf
 
 def query_gpt(prompt):
