@@ -1,0 +1,108 @@
+/* 전체 컨테이너 */
+.api-request-handler {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 600px;
+  }
+  
+  /* Submit 버튼 */
+  .submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px; /* 버튼과 카드 간 간격 */
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* 결과 카드 (데이터가 없을 때는 렌더링되지 않음) */
+  .result-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  /* 이미지 결과 */
+  .result-container {
+    text-align: center;
+    margin-bottom: 20px; /* 이미지와 API Response 간 간격 */
+  }
+  
+  .result-title {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .image-card {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 이미지 크기 고정 */
+  .result-image {
+    width: 300px; /* 고정 너비 */
+    height: 300px; /* 고정 높이 */
+    object-fit: contain; /* 이미지 비율 유지하며 맞춤 */
+    border-radius: 8px;
+  }
+  
+  /* API Response 컨테이너 */
+  .api-response-container {
+    font-family: 'Source Code Pro', monospace; /* 코드 전용 폰트 */
+    text-align: center;
+    width: 100%;
+  }
+  
+/* API Response 토글 버튼 */
+  .toggle-btn {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(145deg, #ff4c4c, #d93636); /* 빨간색 그라데이션 */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 10px auto; /* 가운데 정렬 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toggle-btn:hover {
+    background: linear-gradient(145deg, #d93535, #b12121); /* 호버 시 어두운 빨간색 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .toggle-btn:active {
+    transform: translateY(1px); /* 클릭 시 살짝 눌림 효과 */
+    background: linear-gradient(145deg, #b12121, #8a1a1a); /* 클릭 시 더 어두운 빨간색 */
+  }
+  
+  .toggle-btn:disabled {
+    background: #eaeaea; /* 비활성화 상태 */
+    color: #aaa;
+    cursor: not-allowed; /* 클릭 불가 */
+    box-shadow: none;
+  }
+  
+  

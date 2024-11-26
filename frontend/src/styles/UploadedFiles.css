@@ -1,0 +1,67 @@
+.uploaded-files {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .uploaded-files h3 {
+    margin-top: 8px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .file-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .file-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 12px;
+    width: 250px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .file-name {
+    font-size: 14px;
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 180px;
+  }
+  
+  .remove-btn {
+    background: linear-gradient(145deg, #ff4c4c, #d93636); /* 그라데이션 */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  }
+  
+  .remove-btn:hover {
+    background: linear-gradient(145deg, #d93535, #b12121); /* 호버 시 어두운 빨간색 */
+    transform: translateY(-2px); /* 약간 떠오르는 효과 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  }
+  
+  .remove-btn:active {
+    background: linear-gradient(145deg, #b12121, #8a1a1a); /* 클릭 시 더 어두운 빨간색 */
+    transform: translateY(1px); /* 클릭 시 눌리는 효과 */
+  }
+  
+  
