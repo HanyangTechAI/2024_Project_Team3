@@ -1,3 +1,46 @@
+/* 전역 폰트 설정 */
+body {
+  font-family: 'Roboto', sans-serif; /* 기본 본문 폰트 */
+  user-select: none; /* 텍스트 선택 비활성화 */
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9; /* 부드러운 배경색 */
+  color: #333;
+}
+
+/* 헤더 스타일 */
+.header h1 {
+  font-family: 'Poppins', sans-serif; /* 제목 폰트 */
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #141414;
+  margin-bottom: 1rem;
+}
+
+/* 상태 메시지 스타일 */
+.status-message {
+  font-family: 'Roboto', sans-serif; /* 기본 본문 폰트 */
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* 전체 컨테이너 스타일 */
 .container {
   display: flex;
@@ -6,20 +49,6 @@
   justify-content: center;
   height: 100vh;
   background-color: #f9f9f9;
-}
-
-/* 헤더 스타일 */
-.header h1 {
-  font-size: 2.5rem;
-  color: #003366;
-  margin-bottom: 1rem;
-}
-
-/* 상태 메시지 스타일 */
-.status-message {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 2rem;
 }
 
 /* 업로드 컨테이너 */
@@ -55,16 +84,17 @@
   align-items: center;
   height: 100vh;
   background-color: #f0f8ff;
-  font-family: 'Courier New', Courier, monospace; /* 타이핑 효과에 적합한 폰트 */
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .typing-effect {
+  font-family: 'Poppins', sans-serif;
   font-size: 2rem;
   color: #003366;
-  white-space: nowrap; /* 줄 바꿈 방지 */
-  overflow: hidden; /* 초과 텍스트 숨기기 */
-  border-right: 2px solid #003366; /* 커서 깜박임 */
-  animation: blink 0.7s steps(1) infinite; /* 커서 깜박임 */
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #003366;
+  animation: blink 0.7s steps(1) infinite;
 }
 
 @keyframes blink {
@@ -72,6 +102,7 @@
     border-color: transparent;
   }
 }
+
 
 
 .upload-container {
@@ -109,5 +140,38 @@
 
 .api-request-handler {
   margin-top: 20px;
+}
+
+.submit-btn {
+  font-family: 'Poppins', sans-serif;
+  background-color: #003366;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+  background-color: #022a53;
+}
+
+.submit-btn:active {
+  background-color: #011830;
+}
+
+/* 기본 버튼 스타일 (구체적 클래스만 적용) */
+button.submit-btn {
+  background: linear-gradient(145deg, #014a92, #003366);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 

@@ -1,0 +1,61 @@
+.file-uploader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .file-label {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .file-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* 기본 흰색 */
+    color: #003366; /* 파란색 텍스트 */
+    border: 2px solid #003366;
+    border-radius: 8px;
+    padding: 8px;
+    width: 80px; /* 버튼 너비 */
+    height: 80px; /* 버튼 높이 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s, filter 0.3s ease;
+  }
+  
+  .file-button:hover {
+    background-color: #003366; /* 호버 시 짙은 파란색 */
+    color: white; /* 텍스트 색상 변경 */
+  }
+  
+  .file-button:active {
+    background-color: #002447; /* 클릭 시 더 짙은 파란색 */
+    transform: scale(0.95); /* 눌리는 효과 */
+  }
+  
+  .file-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px; /* 아이콘과 텍스트 간격 */
+    transition: filter 0.3s ease; /* 이미지 반전 애니메이션 */
+  }
+  
+  .file-button:hover .file-icon,
+  .file-button:active .file-icon {
+    filter: invert(1); /* 이미지 색상 반전 */
+  }
+  
+  .file-label-text {
+    font-size: 12px; /* 텍스트 크기 조정 */
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .file-input {
+    display: none; /* 기본 input 숨기기 */
+  }
+  

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import "../styles/ApiRequestHandler.css"; // 스타일 추가
 
 function ApiRequestHandler({ files }) {
   const [response, setResponse] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [showApiResponse, setShowApiResponse] = useState(false); // API Response 표시 여부
   const flaskBackendUrl = "http://localhost:5000"; // Flask 백엔드 URL
 
   const handleApiRequest = async () => {
@@ -37,17 +39,40 @@ function ApiRequestHandler({ files }) {
 
   return (
     <div className="api-request-handler">
-      <button onClick={handleApiRequest}>Submit Files to API</button>
-      {response && (
-        <div className="api-response">
-          <h4>API Response:</h4>
-          <pre>{JSON.stringify(response, null, 2)}</pre>
-        </div>
-      )}
-      {imageUrl && (
-        <div className="result-image">
-          <h4>Generated Image:</h4>
-          <img src={imageUrl} alt="Generated Result" style={{ maxWidth: "100%" }} />
+      {/* Submit 버튼 */}
+      <button className="submit-btn" onClick={handleApiRequest}>
+        Submit Files to API
+      </button>
+
+      {/* 결과가 있을 때만 카드 표시 */}
+      {(imageUrl || response) && (
+        <div className="result-card">
+          {/* 이미지 결과 */}
+          {imageUrl && (
+            <div className="result-container">
+              <h4 className="result-title">Generated Image</h4>
+              <div className="image-card">
+                <img src={imageUrl} alt="Generated Result" className="result-image" />
+              </div>
+            </div>
+          )}
+
+          {/* API Response */}
+          {response && (
+            <div className="api-response-container">
+              <button
+                className="toggle-btn"
+                onClick={() => setShowApiResponse((prev) => !prev)}
+              >
+                {showApiResponse ? "Hide API Response" : "Show API Response"}
+              </button>
+              {showApiResponse && (
+                <div className="api-response">
+                  <pre>{JSON.stringify(response, null, 2)}</pre>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
